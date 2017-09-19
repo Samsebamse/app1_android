@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hangman</string>
+    <string name="start">Play now</string>
+    <string name="gameplay">Game rules</string>
+    <string name="topscore">Topp score</string>
+    <string name="confirm_button">Chek letter</string>
+</resources>

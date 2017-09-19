@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <array name="wordlist">
+            <item>elefant</item>
+            <item>hest</item>
+            <item>okse</item>
+            <item>svin</item>
+            <item>hund</item>
+            <item>katt</item>
+        </array>
+    </resources>

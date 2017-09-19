@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hangman</string>
+    <string name="start">Start spill</string>
+    <string name="gameplay">Spilleregler</string>
+    <string name="topscore">Rekord</string>
+    <string name="confirm_button">Prøv Bokstaven</string>
+</resources>
