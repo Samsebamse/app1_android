@@ -10,8 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
@@ -31,6 +29,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         viewCorrect = (TextView) findViewById(R.id.correctLetters);
+        viewTaken = (TextView) findViewById(R.id.takenLetters);
         input = (EditText) findViewById(R.id.inputUser);
         buttonOk = (Button) findViewById(R.id.confirmButton);
         imageHangman = (ImageView) findViewById(R.id.hangmanView);

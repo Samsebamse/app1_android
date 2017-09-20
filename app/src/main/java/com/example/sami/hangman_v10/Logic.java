@@ -11,6 +11,7 @@ public class Logic {
     private final String secretWord;
     private StringBuilder dashedLine;
     private StringBuilder takenLetters;
+    private char[] takenLettersStored;
     private int errorCounter = 0;
     private Toast popupMessage;
 
@@ -24,6 +25,7 @@ public class Logic {
 
         dashedLine = new StringBuilder();
         takenLetters = new StringBuilder();
+
         for (int i = 0; i < secretWord.length(); i++){
             dashedLine.append("_");
             dashedLine.append(" ");
@@ -32,17 +34,18 @@ public class Logic {
 
     public void checkWord(char userInput){
 
+        takenLetters.append(userInput + "\n");
+
         for(int j = 0; j < secretWord.length(); j++) {
             if (userInput == secretWord.charAt(j)) {
                 dashedLine.setCharAt(j * 2, secretWord.charAt(j));
                 return;
             }
-            if (userInput == takenLetters.charAt(j)){
-                return;
-            }
+
+
 
         }
-        takenLetters.append(userInput);
+
         errorCounter++;
     }
 
