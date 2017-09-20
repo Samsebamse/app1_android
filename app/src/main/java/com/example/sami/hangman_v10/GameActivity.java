@@ -17,6 +17,7 @@ import java.util.Random;
 public class GameActivity extends AppCompatActivity {
 
     private TextView viewCorrect;
+    private TextView viewTaken;
     private EditText input;
     private Button buttonOk;
     private ImageView imageHangman;
@@ -64,6 +65,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void updateInfo(){
         viewCorrect.setText(logic.getDashedLines());
+        viewTaken.append(logic.getTakenLetters() + "\n");
         imageHangman.setImageResource(logic.getResID());
     }
 }
