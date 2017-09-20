@@ -5,4 +5,5 @@
     <string name="gameplay">Game rules</string>
     <string name="topscore">Topp score</string>
     <string name="confirm_button">Chek letter</string>
+    <string name="letter_exist">You have already entered</string>
 </resources>

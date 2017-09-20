@@ -9,77 +9,61 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
 
-    //Counter for wrong guesses
-    private int counter = 0;
+    private TextView viewCorrect;
+    private EditText input;
+    private Button buttonOk;
+    private ImageView imageHangman;
 
-    //Display first image of hangman and storing ID to all of them in an int array
-    private int [] resID = {R.mipmap.hangman1, R.mipmap.hangman2, R.mipmap.hangman3,
-                    R.mipmap.hangman4, R.mipmap.hangman5, R.mipmap.hangman6,
-                    R.mipmap.hangman7};
+    //Accessor for Logic class
+    private Logic logic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        //Creating a reference to widgets
-        final TextView display = (TextView) findViewById(R.id.wordCount);
-        final EditText input = (EditText) findViewById(R.id.inputUser);
-        final Button buttonOk = (Button) findViewById(R.id.confirmButton);
-        final ImageView imageHangman = (ImageView) findViewById(R.id.hangmanView);
+        viewCorrect = (TextView) findViewById(R.id.correctLetters);
+        input = (EditText) findViewById(R.id.inputUser);
+        buttonOk = (Button) findViewById(R.id.confirmButton);
+        imageHangman = (ImageView) findViewById(R.id.hangmanView);
 
-        imageHangman.setImageResource(resID[counter]);
+        logic = new Logic(generateWord());
+        updateInfo();
+        buttonHandler();
+    }
 
-        //Retrieve words saved in arrays.xml
+    public String generateWord(){
         Resources res = getResources();
         TypedArray wordlist = res.obtainTypedArray(R.array.wordlist);
 
-        //Random generator
         Random random = new Random();
+        int randomIndex = random.nextInt(wordlist.length());
 
-        //Picks up a number from 0 to total amount of words in arrays.xml
-        int index = random.nextInt(wordlist.length());
+        return wordlist.getString(randomIndex);
+    }
 
-        //Storing the random word to a string
-        final String secretWord = wordlist.getString(index);
+    public void buttonHandler() {
 
-        //Counting amount of letters whihin that random word
-        final int length = secretWord.length();
+        buttonOk.setOnClickListener(new View.OnClickListener(){
 
-        final StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < length; i++){
-            sb.append("_");
-            sb.append(" ");
-        }
-
-        //Displaying dashes for the secret word
-        display.setText(sb.toString());
-
-
-        buttonOk.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
-
-                char chr1 = input.getText().charAt(0);
-                char [] chr2 = secretWord.toCharArray();
-
-                for(int j = 0; j < length; j++){
-                    if(chr1 == chr2[j]){
-                        sb.setCharAt(j*2, chr2[j]);
-                        display.setText(sb.toString());
-                    }
-                    else{
-                        counter++;
-                        imageHangman.setImageResource(resID[counter]);
-                    }
-                }
+            @Override
+            public void onClick(View view) {
+                logic.checkWord(input.getText().charAt(0));
+                updateInfo();
                 input.setText("");
             }
         });
+    }
 
+    public void updateInfo(){
+        viewCorrect.setText(logic.getDashedLines());
+        imageHangman.setImageResource(logic.getResID());
     }
 }

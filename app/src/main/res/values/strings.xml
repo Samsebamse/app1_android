@@ -5,4 +5,5 @@
     <string name="gameplay">Spilleregler</string>
     <string name="topscore">Rekord</string>
     <string name="confirm_button">Prøv Bokstaven</string>
+    <string name="letter_exist">Du har allerede tastet</string>
 </resources>
