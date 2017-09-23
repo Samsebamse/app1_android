@@ -2,8 +2,10 @@
 <resources>
     <string name="app_name">Hangman</string>
     <string name="start">Play now</string>
+    <string name="language">Change to Norwegian</string>
     <string name="gameplay">Game rules</string>
     <string name="topscore">Topp score</string>
     <string name="confirm_button">Chek letter</string>
-    <string name="letter_exist">You have already entered</string>
+    <string name="letter_exist">Already entered!</string>
+    <string name="enter_letter">Please enter a letter!</string>
 </resources>

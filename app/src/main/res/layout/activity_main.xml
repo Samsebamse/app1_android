@@ -18,7 +18,7 @@
         app:srcCompat="@mipmap/imageman" />
 
     <Button
-        android:id="@+id/knappstart"
+        android:id="@+id/buttonStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -27,7 +27,16 @@
         android:text="@string/start" />
 
     <Button
-        android:id="@+id/knappregler"
+        android:id="@+id/buttonLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="50sp"
+        android:layout_marginRight="50sp"
+        android:text="@string/language" />
+
+    <Button
+        android:id="@+id/buttonRules"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -36,7 +45,7 @@
         android:text="@string/gameplay" />
 
     <Button
-        android:id="@+id/knapprekord"
+        android:id="@+id/buttonTopscore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

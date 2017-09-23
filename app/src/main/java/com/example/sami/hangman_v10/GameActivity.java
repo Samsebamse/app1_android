@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.Toast;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
@@ -19,6 +20,11 @@ public class GameActivity extends AppCompatActivity {
     private EditText input;
     private Button buttonOk;
     private ImageView imageHangman;
+    private String secretWord;
+
+    private char c;
+
+    Toast popupMesssage;
 
     //Accessor for Logic class
     private Logic logic;
@@ -26,20 +32,44 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
 
+        if (savedInstanceState != null){
+            String secret = savedInstanceState.getString("secret");
+            ArrayList<String> dash = savedInstanceState.getStringArrayList("dashedLines");
+            ArrayList<String> taken = savedInstanceState.getStringArrayList("takenLetters");
+            int tries = savedInstanceState.getInt("tries");
+            int errors = savedInstanceState.getInt("errors");
+            logic = new Logic(secret, dash, taken, tries, errors);
+        }
+        else{
+            this.secretWord = generateWord();
+            logic = new Logic(secretWord);
+        }
+
+        setContentView(R.layout.activity_game);
         viewCorrect = (TextView) findViewById(R.id.correctLetters);
         viewTaken = (TextView) findViewById(R.id.takenLetters);
         input = (EditText) findViewById(R.id.inputUser);
         buttonOk = (Button) findViewById(R.id.confirmButton);
         imageHangman = (ImageView) findViewById(R.id.hangmanView);
 
-        logic = new Logic(generateWord());
         updateInfo();
         buttonHandler();
+        keyboardHandler();
     }
 
-    public String generateWord(){
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString("secret", secretWord);
+        outState.putStringArrayList("dashedLines", logic.getDashedLines());
+        outState.putStringArrayList("takenLetters", logic.getAllLetters());
+        outState.putInt("tries", logic.getTries());
+        outState.putInt("errors", logic.getErrors());
+
+        super.onSaveInstanceState(outState);
+    }
+
+    public String generateWord() {
         Resources res = getResources();
         TypedArray wordlist = res.obtainTypedArray(R.array.wordlist);
 
@@ -49,22 +79,46 @@ public class GameActivity extends AppCompatActivity {
         return wordlist.getString(randomIndex);
     }
 
-    public void buttonHandler() {
-
-        buttonOk.setOnClickListener(new View.OnClickListener(){
-
+    public void keyboardHandler() {
+        input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logic.checkWord(input.getText().charAt(0));
-                updateInfo();
                 input.setText("");
             }
         });
     }
 
-    public void updateInfo(){
-        viewCorrect.setText(logic.getDashedLines());
-        viewTaken.append(logic.getTakenLetters() + "\n");
+    public void buttonHandler() {
+
+        buttonOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(input.getText().length() > 0) {
+                    c = input.getText().charAt(0);
+                    logic.checkWord(c);
+                        if(logic.sameLetter){
+                            popupMessage(R.string.letter_exist);
+                        }
+                    updateInfo();
+                    input.setText("");
+                }
+                else{
+                    popupMessage(R.string.enter_letter);
+                }
+            }
+        });
+    }
+
+    public void updateInfo() {
+        viewCorrect.setText(logic.listDashedLines());
+        viewTaken.setText(logic.listAllLetters());
         imageHangman.setImageResource(logic.getResID());
+    }
+
+    public void popupMessage(int resId) {
+        popupMesssage = Toast.makeText(getApplicationContext(), getString(resId), Toast.LENGTH_LONG);
+        popupMesssage.show();
+
     }
 }
