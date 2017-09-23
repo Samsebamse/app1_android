@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         allButtonHandler(R.id.buttonLanguage);
         allButtonHandler(R.id.buttonRules);
         allButtonHandler(R.id.buttonTopscore);
-    }
+    } //
 
     @Override
     protected void onStart()

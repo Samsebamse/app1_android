@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#4286f4"
+    tools:context="com.example.sami.hangman_v10.MainActivity"
+    android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.88"
+        app:srcCompat="@mipmap/imageman" />
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="150sp"
+        android:layout_marginRight="150sp"
+        android:text="@string/start" />
+
+    <Button
+        android:id="@+id/buttonLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="150sp"
+        android:layout_marginRight="150sp"
+        android:text="@string/language" />
+
+    <Button
+        android:id="@+id/buttonRules"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="150sp"
+        android:layout_marginRight="150sp"
+        android:text="@string/gameplay" />
+
+    <Button
+        android:id="@+id/buttonTopscore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="150sp"
+        android:layout_marginRight="150sp"
+        android:text="@string/topscore" />
+</LinearLayout>

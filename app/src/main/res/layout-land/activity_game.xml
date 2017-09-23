@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.27"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/hangmanView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.34"
+            app:srcCompat="@mipmap/hangman1" />
+
+        <TextView
+            android:id="@+id/takenLetters"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.34" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.08"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/correctLetters"
+            android:layout_width="298dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="40sp" />
+
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="70sp"
+            android:layout_weight="0.41"
+            android:text="@string/confirm_button" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/inputUser"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:imeOptions="actionDone"
+        android:inputType="textMultiLine|textFilter|textVisiblePassword|textNoSuggestions"
+        android:maxLength="200"
+        android:padding="4dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/holo_red_light"
+        />
+
+</LinearLayout>
