@@ -55,7 +55,6 @@ public class GameActivity extends AppCompatActivity {
 
         updateInfo();
         buttonHandler();
-        keyboardHandler();
     }
 
     @Override
@@ -77,15 +76,6 @@ public class GameActivity extends AppCompatActivity {
         int randomIndex = random.nextInt(wordlist.length());
 
         return wordlist.getString(randomIndex);
-    }
-
-    public void keyboardHandler() {
-        input.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                input.setText("");
-            }
-        });
     }
 
     public void buttonHandler() {

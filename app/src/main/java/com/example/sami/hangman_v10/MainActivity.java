@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         allButtonHandler(R.id.buttonLanguage);
         allButtonHandler(R.id.buttonRules);
         allButtonHandler(R.id.buttonTopscore);
-    } //
+    }
 
     @Override
     protected void onStart()
@@ -43,23 +43,21 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    public void allButtonHandler(int buttonId){
+    public void allButtonHandler(final int buttonId){
         final Button clickedButton = (Button) findViewById(buttonId);
-
         clickedButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
+                switch(buttonId){
 
-                if(clickedButton.getId() == R.id.buttonStart) {
+                    case R.id.buttonStart:
                     Intent gameIntent = new Intent(MainActivity.this, GameActivity.class);
                     startActivity(gameIntent);
-                }
-                else if(clickedButton.getId() == R.id.buttonLanguage){
-                    System.out.println("Før: "+language);
-                    language = !language;
-                    System.out.println("Etter: "+language);
+                    break;
 
+                    case R.id.buttonLanguage:
+                    language = !language;
                     if(language){
                         setLocale("no");
                     }
@@ -69,15 +67,17 @@ public class MainActivity extends AppCompatActivity {
 
                     saveState();
                     reloadActivity();
-                }
-                else if(clickedButton.getId() == R.id.buttonRules){
+                    break;
 
-                }
-                else if(clickedButton.getId() == R.id.buttonTopscore){
+                    case R.id.buttonRules:
+                        break;
+
+
+                    case R.id.buttonTopscore:
+                        break;
 
                 }
             }
-
         });
     }
     public void setLocale(String lang) {

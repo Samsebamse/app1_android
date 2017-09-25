@@ -32,6 +32,7 @@ public class Logic {
             dashedLine.add(" ");
         }
     }
+
     public Logic(String secret, ArrayList<String> dash, ArrayList<String> taken, int tries, int errors){
         this.secretWord = secret;
         this.dashedLine = new ArrayList<String>(dash);
@@ -62,6 +63,7 @@ public class Logic {
             errorCounter++;
         }
     }
+
     public ArrayList<String> getDashedLines(){
         return dashedLine;
     }
@@ -89,6 +91,7 @@ public class Logic {
         }
         return sb;
     }
+
     public StringBuilder listDashedLines(){
         StringBuilder sb = new StringBuilder();
         for(int j = 0; j < dashedLine.size(); j++){
