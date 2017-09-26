@@ -8,4 +8,9 @@
     <string name="confirm_button">Chek letter</string>
     <string name="letter_exist">Already entered!</string>
     <string name="enter_letter">Please enter a letter!</string>
+    <string name="lost">You lost! Try again?</string>
+    <string name="won">You won! Try again?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="toplist">Top 5 List</string>
 </resources>

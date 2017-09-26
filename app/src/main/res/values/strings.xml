@@ -8,4 +8,9 @@
     <string name="confirm_button">Prøv Bokstaven</string>
     <string name="letter_exist">Allerede tastet inn!</string>
     <string name="enter_letter">Tast inn en bokstav!</string>
+    <string name="lost">Du har tapt! Prøve igjen?</string>
+    <string name="won">Du vant! Prøve igjen?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nei</string>
+    <string name="toplist">Top 5 Liste</string>
 </resources>

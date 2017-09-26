@@ -2,13 +2,15 @@
     <resources>
         <array name="wordlist">
             <item>elefant</item>
-            <item>hest</item>
-            <item>okse</item>
-            <item>ape</item>
+            <item>flodhest</item>
+            <item>hamburger</item>
+            <item>zebra</item>
             <item>hund</item>
             <item>katt</item>
             <item>troll</item>
             <item>gamer</item>
-            <item></item>
+            <item>burberry</item>
+            <item>gucci</item>
+            <item>apputvikling</item>
         </array>
     </resources>

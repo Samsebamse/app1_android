@@ -52,8 +52,9 @@ public class MainActivity extends AppCompatActivity {
                 switch(buttonId){
 
                     case R.id.buttonStart:
-                    Intent gameIntent = new Intent(MainActivity.this, GameActivity.class);
-                    startActivity(gameIntent);
+                    Intent gameActivity = new Intent(MainActivity.this, GameActivity.class);
+                    startActivity(gameActivity);
+                    finish();
                     break;
 
                     case R.id.buttonLanguage:
@@ -74,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                     case R.id.buttonTopscore:
+                        Intent RankActivity = new Intent(MainActivity.this, RankActivity.class);
+                        startActivity(RankActivity);
+                        finish();
                         break;
 
                 }
