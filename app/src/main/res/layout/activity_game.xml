@@ -53,7 +53,6 @@
     <EditText
         android:id="@+id/inputUser"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/tab_indicator_text" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

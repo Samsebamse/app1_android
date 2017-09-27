@@ -1,7 +1,6 @@
 package com.example.sami.hangman_v10;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,13 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
-import java.util.Set;
-import java.util.TreeSet;
 
-import static android.R.id.edit;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -36,6 +30,7 @@ public class GameActivity extends AppCompatActivity {
     private String secretWord;
 
     private char c;
+    private boolean vant;
 
     private Toast popupMesssage;
     private AlertDialog.Builder dialogBuilder;
@@ -47,22 +42,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null){
-            String secret = savedInstanceState.getString("secret");
-            ArrayList<String> dash = savedInstanceState.getStringArrayList("dashedLines");
-            ArrayList<String> taken = savedInstanceState.getStringArrayList("takenLetters");
-            int tries = savedInstanceState.getInt("tries");
-            int error = savedInstanceState.getInt("errors");
-            int correct = savedInstanceState.getInt("correct");
-            logic = new Logic(secret, dash, taken, tries, error, correct);
-        }
-        else{
-            this.secretWord = generateWord();
-            logic = new Logic(secretWord);
-        }
-
         dialogBuilder = new AlertDialog.Builder(this);
-
         setContentView(R.layout.activity_game);
         viewCorrect = (TextView) findViewById(R.id.correctLetters);
         viewTaken = (TextView) findViewById(R.id.takenLetters);
@@ -70,7 +50,14 @@ public class GameActivity extends AppCompatActivity {
         buttonOk = (Button) findViewById(R.id.confirmButton);
         imageHangman = (ImageView) findViewById(R.id.hangmanView);
 
-        topListHandler(1000);
+        if (savedInstanceState != null){
+            onRestoreInstanceState(savedInstanceState);
+        }
+        else{
+            this.secretWord = generateWord();
+            logic = new Logic(secretWord);
+        }
+
         updateInfo();
         buttonHandler();
     }
@@ -83,8 +70,22 @@ public class GameActivity extends AppCompatActivity {
         outState.putInt("tries", logic.getTries());
         outState.putInt("errors", logic.getErrorsCounter());
         outState.putInt("correct", logic.getCorrectCounter());
+        outState.putString("userInput", input.getText().toString());
 
         super.onSaveInstanceState(outState);
+    }
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState){
+        String secret = savedInstanceState.getString("secret");
+        ArrayList<String> dash = savedInstanceState.getStringArrayList("dashedLines");
+        ArrayList<String> taken = savedInstanceState.getStringArrayList("takenLetters");
+        int tries = savedInstanceState.getInt("tries");
+        int error = savedInstanceState.getInt("errors");
+        int correct = savedInstanceState.getInt("correct");
+
+        input.setText(savedInstanceState.getString("userInput"));
+
+        logic = new Logic(secret, dash, taken, tries, error, correct);
     }
 
     public String generateWord() {
@@ -118,9 +119,11 @@ public class GameActivity extends AppCompatActivity {
 
                 if(logic.getErrorsCounter() > 5){
                     dialogBox(R.string.lost, R.string.yes, R.string.no);
+                    topListHandler(false);
                 }
                 else if(logic.getCorrectCounter() == logic.getSecretNumb()){
                     dialogBox(R.string.won, R.string.yes, R.string.no);
+                    topListHandler(true);
                 }
 
             }
@@ -168,12 +171,19 @@ public class GameActivity extends AppCompatActivity {
         alertbox.show();
     }
 
-    private void topListHandler(int topScore){
-        SharedPreferences topScoreList = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = topScoreList.edit();
-        editor.putStringSet("topscorelist", new TreeSet<String>());
-        editor.apply();
-
+    private void topListHandler(boolean vant){
+        if(vant){
+            SharedPreferences topScoreList = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = topScoreList.edit();
+            editor.putInt("vant", topScoreList.getInt("vant", 0)+1);
+            editor.apply();
+        }
+        else{
+            SharedPreferences topScoreList = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = topScoreList.edit();
+            editor.putInt("tapt", topScoreList.getInt("tapt", 0)+1);
+            editor.apply();
+        }
     }
 
 }

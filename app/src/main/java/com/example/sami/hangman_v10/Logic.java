@@ -1,11 +1,7 @@
 package com.example.sami.hangman_v10;
 
-import android.content.SharedPreferences;
-
 import java.util.ArrayList;
 import java.lang.StringBuilder;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by Sami on 20-Sep-17.
@@ -119,11 +115,4 @@ public class Logic {
         return sb;
     }
 
-    public int getResultPoints(){
-
-        return (correctCounter/tries)*1000;
-    }
-    public void compareResults(){
-
-    }
 }

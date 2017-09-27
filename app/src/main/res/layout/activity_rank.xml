@@ -5,19 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.sami.hangman_v10.RankActivity">
+    tools:context="com.example.sami.hangman_v10.RankActivity"
+    android:weightSum="1">
 
-    <TextView
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.00"
-        android:gravity="center"
-        android:text="@string/toplist"
-        android:textSize="30sp" />
+        android:layout_weight="0.97"></com.github.mikephil.charting.charts.PieChart>
 
-    <TextView
-        android:id="@+id/viewRank"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/resetStatsButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.01" />
+        android:layout_gravity="center"
+        android:text="@string/resetstats" />
+
 </LinearLayout>

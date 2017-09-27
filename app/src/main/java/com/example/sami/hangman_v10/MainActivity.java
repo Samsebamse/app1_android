@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // get saved language value
-        getSavedState();
+        loadLanguage();
 
         // change all language texts
         if(language){
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         setLocale("en");
                     }
 
-                    saveState();
+                    saveLanguage();
                     reloadActivity();
                     break;
 
@@ -100,13 +100,13 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private void saveState(){
+    private void saveLanguage(){
         SharedPreferences.Editor editor = getSharedPreferences("languageSharedPref", MODE_PRIVATE).edit();
         editor.putBoolean("language", language);
         editor.apply();
     }
 
-    private void getSavedState(){
+    private void loadLanguage(){
         SharedPreferences prefs = getSharedPreferences("languageSharedPref", MODE_PRIVATE);
         language = prefs.getBoolean("language", false);
     }

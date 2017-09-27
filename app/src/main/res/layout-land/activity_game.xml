@@ -68,7 +68,6 @@
         android:maxLength="200"
         android:padding="4dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@android:color/holo_red_light"
         />
 
 </LinearLayout>
