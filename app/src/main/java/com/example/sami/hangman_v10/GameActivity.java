@@ -1,11 +1,13 @@
 package com.example.sami.hangman_v10;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +22,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.TreeSet;
+
+import static android.R.id.edit;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -34,8 +39,6 @@ public class GameActivity extends AppCompatActivity {
 
     private Toast popupMesssage;
     private AlertDialog.Builder dialogBuilder;
-
-    private ArrayList<String> topList;
 
     //Accessor for Logic class
     private Logic logic;
@@ -59,7 +62,6 @@ public class GameActivity extends AppCompatActivity {
         }
 
         dialogBuilder = new AlertDialog.Builder(this);
-        topList = new ArrayList<>();
 
         setContentView(R.layout.activity_game);
         viewCorrect = (TextView) findViewById(R.id.correctLetters);
@@ -68,10 +70,7 @@ public class GameActivity extends AppCompatActivity {
         buttonOk = (Button) findViewById(R.id.confirmButton);
         imageHangman = (ImageView) findViewById(R.id.hangmanView);
 
-        SharedPreferences topScoreList = getSharedPreferences("topScoreList", MODE_PRIVATE);
-        topList.add(topScoreList.getString("rank1", ""));
-
-        saveState(500);
+        topListHandler(1000);
         updateInfo();
         buttonHandler();
     }
@@ -117,7 +116,6 @@ public class GameActivity extends AppCompatActivity {
                     popupMessage(R.string.enter_letter);
                 }
 
-
                 if(logic.getErrorsCounter() > 5){
                     dialogBox(R.string.lost, R.string.yes, R.string.no);
                 }
@@ -147,10 +145,9 @@ public class GameActivity extends AppCompatActivity {
                 getString(yes),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                        Intent intent = getIntent();
+                        Intent playAgain = getIntent();
                         finish();
-                        startActivity(intent);
+                        startActivity(playAgain);
 
                     }
                 });
@@ -159,7 +156,6 @@ public class GameActivity extends AppCompatActivity {
                 getString(no),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
                         Intent mainMenu = new Intent(GameActivity.this, MainActivity.class);
                         finish();
                         startActivity(mainMenu);
@@ -172,12 +168,11 @@ public class GameActivity extends AppCompatActivity {
         alertbox.show();
     }
 
-    private void saveState(int topScore){
-        SharedPreferences topScoreList = getSharedPreferences("topScoreList", MODE_PRIVATE);
+    private void topListHandler(int topScore){
+        SharedPreferences topScoreList = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = topScoreList.edit();
-        if(topList.isEmpty()){
-            editor.putString("rank1", String.valueOf(topScore));
-        }
+        editor.putStringSet("topscorelist", new TreeSet<String>());
+        editor.apply();
 
     }
 

@@ -18,8 +18,11 @@ public class RankActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rank);
 
         viewRank = (TextView) findViewById(R.id.viewRank);
-        SharedPreferences rankList = PreferenceManager.getDefaultSharedPreferences(this);
-        viewRank.setText(rankList.getString("topScoreList", ""));
+        SharedPreferences topScoreList = PreferenceManager.getDefaultSharedPreferences(this);
+        String str1 = topScoreList.getString("rank1", null);
+        String str2 = topScoreList.getString("rank2", null);
+        viewRank.append(str1);
+        viewRank.append(str2);
 
 
 

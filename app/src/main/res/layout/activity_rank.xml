@@ -19,6 +19,5 @@
         android:id="@+id/viewRank"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.01"
-        android:text="TextView" />
+        android:layout_weight="0.01" />
 </LinearLayout>
