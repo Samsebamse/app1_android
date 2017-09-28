@@ -48,26 +48,21 @@
             android:textSize="40sp" />
 
         <Button
+            style="@style/Widget.AppCompat.Button"
             android:id="@+id/confirmButton"
             android:layout_width="101dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="70sp"
+            android:layout_marginLeft="100sp"
             android:layout_weight="0.41"
             android:text="@string/confirm_button" />
     </LinearLayout>
 
     <EditText
         android:id="@+id/inputUser"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="top"
-        android:imeOptions="actionDone"
-        android:inputType="textMultiLine|textFilter|textVisiblePassword|textNoSuggestions"
-        android:maxLength="200"
-        android:padding="4dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        />
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:digits="abcdefghijklmnopqrstuvwxyzæøå"
+        android:windowSoftInputMode="adjustResize"
+        android:textAppearance="?android:attr/smallScreens"/>
 </LinearLayout>

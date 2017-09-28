@@ -14,6 +14,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private boolean language = false;
+    private Button flagbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +22,7 @@ public class MainActivity extends AppCompatActivity {
         loadLanguage();
 
         // change all language texts
-        if(language){
-            setLocale("no");
-        }
-        else{
-            setLocale("en");
-        }
+        checkLanguage();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -37,11 +33,6 @@ public class MainActivity extends AppCompatActivity {
         allButtonHandler(R.id.buttonTopscore);
     }
 
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-    }
 
     public void allButtonHandler(final int buttonId){
         final Button clickedButton = (Button) findViewById(buttonId);
@@ -59,20 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.buttonLanguage:
                     language = !language;
-                    if(language){
-                        setLocale("no");
-                    }
-                    else{
-                        setLocale("en");
-                    }
-
+                    checkLanguage();
                     saveLanguage();
                     reloadActivity();
                     break;
 
                     case R.id.buttonRules:
                         break;
-
 
                     case R.id.buttonTopscore:
                         Intent RankActivity = new Intent(MainActivity.this, RankActivity.class);
@@ -84,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     public void setLocale(String lang) {
         Locale myLocale = new Locale(lang);
         Resources res = getResources();
@@ -109,5 +94,13 @@ public class MainActivity extends AppCompatActivity {
     private void loadLanguage(){
         SharedPreferences prefs = getSharedPreferences("languageSharedPref", MODE_PRIVATE);
         language = prefs.getBoolean("language", false);
+    }
+    public void checkLanguage(){
+        if(language){
+            setLocale("no");
+        }
+        else{
+            setLocale("en");
+        }
     }
 }

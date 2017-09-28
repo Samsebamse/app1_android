@@ -16,9 +16,13 @@
 
     <Button
         android:id="@+id/resetStatsButton"
-        android:layout_width="wrap_content"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="100sp"
+        android:layout_marginRight="100sp"
+        android:background="@color/colorGray"
         android:text="@string/resetstats" />
 
 </LinearLayout>

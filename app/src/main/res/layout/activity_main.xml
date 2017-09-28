@@ -19,37 +19,41 @@
 
     <Button
         android:id="@+id/buttonStart"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="50sp"
-        android:layout_marginRight="50sp"
+        android:layout_marginLeft="100sp"
+        android:layout_marginRight="100sp"
         android:text="@string/start" />
 
     <Button
         android:id="@+id/buttonLanguage"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="50sp"
-        android:layout_marginRight="50sp"
+        android:layout_marginLeft="100sp"
+        android:layout_marginRight="100sp"
         android:text="@string/language" />
 
     <Button
         android:id="@+id/buttonRules"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="50sp"
-        android:layout_marginRight="50sp"
+        android:layout_marginLeft="100sp"
+        android:layout_marginRight="100sp"
         android:text="@string/gameplay" />
 
     <Button
         android:id="@+id/buttonTopscore"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="50sp"
-        android:layout_marginRight="50sp"
+        android:layout_marginLeft="100sp"
+        android:layout_marginRight="100sp"
         android:text="@string/topscore" />
 </LinearLayout>
