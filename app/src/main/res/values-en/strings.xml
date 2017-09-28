@@ -14,5 +14,7 @@
     <string name="no">No</string>
     <string name="toplist">Top 5 List</string>
     <string name="stats">Statistics</string>
+    <string name="show_loss">Loss</string>
+    <string name="show_win">Win</string>
     <string name="resetstats">Reset Statistics</string>
 </resources>

@@ -175,13 +175,13 @@ public class GameActivity extends AppCompatActivity {
         if(vant){
             SharedPreferences topScoreList = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = topScoreList.edit();
-            editor.putInt("vant", topScoreList.getInt("vant", 0)+1);
+            editor.putInt("win", topScoreList.getInt("win", 0)+1);
             editor.apply();
         }
         else{
             SharedPreferences topScoreList = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = topScoreList.edit();
-            editor.putInt("tapt", topScoreList.getInt("tapt", 0)+1);
+            editor.putInt("loss", topScoreList.getInt("loss", 0)+1);
             editor.apply();
         }
     }

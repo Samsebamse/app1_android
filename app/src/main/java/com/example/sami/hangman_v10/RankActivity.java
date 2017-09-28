@@ -1,6 +1,7 @@
 package com.example.sami.hangman_v10;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,12 +16,10 @@ import com.github.mikephil.charting.data.PieEntry;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.os.Build.VERSION_CODES.M;
-
 public class RankActivity extends AppCompatActivity {
 
     private PieChart pieChart;
-    private Button reset;
+
     SharedPreferences topScoreList;
     SharedPreferences.Editor editor;
 
@@ -29,30 +28,13 @@ public class RankActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank);
 
-        pieChart = (PieChart) findViewById(R.id.pieChart);
+        createPieChart();
+        handleResetButton(R.id.resetStatsButton);
+    }
 
-        topScoreList = PreferenceManager.getDefaultSharedPreferences(this);
-        int antallSeiere = topScoreList.getInt("vant", 0);
-        int antallTap = topScoreList.getInt("tapt", 0);
-        int antallSpill = antallSeiere + antallTap;
-
-        List<PieEntry> entries = new ArrayList<>();
-        int color1 = R.color.colorAccent;
-        int color2 = R.color.colorPrimary;
-        String title = getResources().getString(R.string.stats);
-
-        PieDataSet set = new PieDataSet(entries, title);
-        set.setColors(new int[] {color1, color2}, this);
-        entries.add(new PieEntry(antallSeiere, color1));
-        entries.add(new PieEntry(antallTap, color2));
-        PieData data = new PieData(set);
-        pieChart.setData(data);
-        pieChart.invalidate();
-
-        reset = (Button) findViewById(R.id.resetStatsButton);
-
-        reset.setOnClickListener(new View.OnClickListener() {
-
+    private void handleResetButton(final int buttonId) {
+        final Button resetButton = (Button) findViewById(buttonId);
+        resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 editor = topScoreList.edit();
@@ -62,5 +44,31 @@ public class RankActivity extends AppCompatActivity {
                 pieChart.clear();
             }
         });
+
+    }
+
+    public void createPieChart(){
+        pieChart = (PieChart) findViewById(R.id.pieChart);
+        pieChart.getDescription().setEnabled(false);
+
+        topScoreList = PreferenceManager.getDefaultSharedPreferences(this);
+        int [] values = {topScoreList.getInt("win", 0), topScoreList.getInt("loss", 0)};
+        String [] xLabel = {getString(R.string.show_win), getString(R.string.show_loss)};
+
+        List<PieEntry> pieEntries = new ArrayList<>();
+        for(int i = 0; i < xLabel.length; i++){
+            pieEntries.add(new PieEntry(values[i], xLabel[i]));
+        }
+        PieDataSet dataSet = new PieDataSet(pieEntries, null);
+        dataSet.setSliceSpace(3f);
+        dataSet.setSelectionShift(10f);
+        dataSet.setColors((new int[] {R.color.colorRed, R.color.colorBlueGray}), this);
+        PieData data = new PieData(dataSet);
+        data.setValueTextSize(25);
+        dataSet.setFormSize(30);
+        dataSet.setValueTextSize(20);
+        pieChart.setDrawEntryLabels(false);
+        pieChart.setData(data);
+        pieChart.invalidate();
     }
 }

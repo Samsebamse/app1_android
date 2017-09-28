@@ -14,5 +14,7 @@
     <string name="no">Nei</string>
     <string name="toplist">Top 5 Liste</string>
     <string name="stats">Statistikk</string>
+    <string name="show_loss">Tap</string>
+    <string name="show_win">Vinn</string>
     <string name="resetstats">Frigjør statistikk</string>
 </resources>
