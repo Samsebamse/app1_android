@@ -1,7 +1,6 @@
 package com.example.sami.hangman_v10;
 
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -64,9 +65,10 @@ public class RankActivity extends AppCompatActivity {
         dataSet.setSelectionShift(10f);
         dataSet.setColors((new int[] {R.color.colorRed, R.color.colorBlueGray}), this);
         PieData data = new PieData(dataSet);
-        data.setValueTextSize(25);
-        dataSet.setFormSize(30);
-        dataSet.setValueTextSize(20);
+        Legend l = pieChart.getLegend();
+        l.setTextSize(20);
+        l.setFormSize(30);
+        data.setValueTextSize(20);
         pieChart.setDrawEntryLabels(false);
         pieChart.setData(data);
         pieChart.invalidate();
