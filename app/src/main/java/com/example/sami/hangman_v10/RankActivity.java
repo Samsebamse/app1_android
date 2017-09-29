@@ -17,7 +17,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RankActivity extends AppCompatActivity {
+public class RankActivity extends AppCompatActivity implements TopFragment.TopSection{
 
     private PieChart pieChart;
 
@@ -39,8 +39,8 @@ public class RankActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editor = topScoreList.edit();
-                editor.remove("vant");
-                editor.remove("tapt");
+                editor.remove("win");
+                editor.remove("loss");
                 editor.apply();
                 pieChart.clear();
             }
@@ -51,8 +51,8 @@ public class RankActivity extends AppCompatActivity {
     public void createPieChart(){
         pieChart = (PieChart) findViewById(R.id.pieChart);
         pieChart.getDescription().setEnabled(false);
-
         topScoreList = PreferenceManager.getDefaultSharedPreferences(this);
+
         int [] values = {topScoreList.getInt("win", 0), topScoreList.getInt("loss", 0)};
         String [] xLabel = {getString(R.string.show_win), getString(R.string.show_loss)};
 

@@ -4,7 +4,7 @@
     <string name="start">Start spill</string>
     <string name="language">Bytt til engelsk</string>
     <string name="gameplay">Spilleregler</string>
-    <string name="topscore">Rekord</string>
+    <string name="topscore">Spillstatistikk</string>
     <string name="confirm_button">Prøv Bokstaven</string>
     <string name="letter_exist">Allerede tastet inn!</string>
     <string name="enter_letter">Tast inn en bokstav!</string>
@@ -17,4 +17,10 @@
     <string name="show_loss">Tap</string>
     <string name="show_win">Vinn</string>
     <string name="resetstats">Frigjør statistikk</string>
+    <string name="instructions">
+        1. Velg en bokstav og er den riktig blir den erstattet med stiplet linje ellers blir den listet opp rød i høyre hjørne.\n
+        2. Fortsett til du enten vinner eller taper.\n
+        3. Gjetter du feil seks ganger, taper du!\n
+        4. Det blir lagret en statistikk over antall ganger du vinner og taper, med mulighet til å resette den!
+    </string>
 </resources>

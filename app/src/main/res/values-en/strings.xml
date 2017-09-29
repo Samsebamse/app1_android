@@ -4,7 +4,7 @@
     <string name="start">Play now</string>
     <string name="language">Change to Norwegian</string>
     <string name="gameplay">Game rules</string>
-    <string name="topscore">Topp score</string>
+    <string name="topscore">Game stats</string>
     <string name="confirm_button">Chek letter</string>
     <string name="letter_exist">Already entered!</string>
     <string name="enter_letter">Please enter a letter!</string>
@@ -17,4 +17,10 @@
     <string name="show_loss">Loss</string>
     <string name="show_win">Win</string>
     <string name="resetstats">Reset Statistics</string>
+    <string name="instructions">
+        1. Guess a letter, if it matches the secret word it will be replaced with the dashed line(s)\n
+        or else it will be listet as a fault letter in red on the right top corner.\n
+        2. When you guess wrong six times, you will lose!\n
+        3. Stats about win and loss will be recorded. You can reset it anytime!
+    </string>
 </resources>

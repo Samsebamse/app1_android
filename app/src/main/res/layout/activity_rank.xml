@@ -8,6 +8,13 @@
     tools:context="com.example.sami.hangman_v10.RankActivity"
     android:weightSum="1">
 
+    <fragment
+        android:name="com.example.sami.hangman_v10.TopFragment"
+        android:id="@+id/TopFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/top_fragment"/>
+    
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pieChart"
         android:layout_width="match_parent"
