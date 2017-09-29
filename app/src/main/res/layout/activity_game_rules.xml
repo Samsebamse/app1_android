@@ -5,25 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.sami.hangman_v10.RankActivity"
+    tools:context="com.example.sami.hangman_v10.GameRulesActivity"
     android:weightSum="1">
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart"
+    <fragment
+        android:id="@+id/TopFragment"
+        android:name="com.example.sami.hangman_v10.TopFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/top_fragment" />
+
+    <TextView
+        android:id="@+id/instructionsview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20sp"
-        android:layout_weight="0.97"></com.github.mikephil.charting.charts.PieChart>
+        android:layout_weight="0.14"
+        android:text="@string/instructions" />
 
-    <Button
-        android:id="@+id/resetStatsButton"
-        style="@style/Widget.AppCompat.Button"
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="100sp"
-        android:layout_marginRight="100sp"
-        android:background="@color/colorGray"
-        android:text="@string/resetstats" />
+        android:layout_weight="0.72"
+        app:srcCompat="@mipmap/gameplay" />
 
 </LinearLayout>

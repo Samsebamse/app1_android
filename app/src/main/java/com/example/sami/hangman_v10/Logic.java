@@ -10,10 +10,11 @@ import java.lang.StringBuilder;
 public class Logic {
 
     private final String secretWord;
+
     private ArrayList<String> dashedLine;
     private ArrayList<String> allLetters;
+    private ArrayList<Integer> buttonId;
 
-    private boolean sameLetter = false;
     private int tries = 0;
     private int errorCounter = 0;
     private int correctCounter = 0;
@@ -29,6 +30,7 @@ public class Logic {
 
         dashedLine = new ArrayList<>();
         allLetters = new ArrayList<>();
+        buttonId = new ArrayList<Integer>();
 
         for (int i = 0; i < secretWord.length(); i++){
             dashedLine.add("_");
@@ -36,35 +38,31 @@ public class Logic {
         }
     }
 
-    public Logic(String secret, ArrayList<String> dash, ArrayList<String> taken, int tries, int error, int correct){
+    public Logic(String secret, ArrayList<String> dash, ArrayList<String> taken, ArrayList<Integer> buttonId, int tries, int error, int correct){
         this.secretWord = secret;
         this.dashedLine = new ArrayList<String>(dash);
         this.allLetters = new ArrayList<String>(taken);
+        this.buttonId = new ArrayList<Integer>(buttonId);
         this.tries = tries;
         this.errorCounter = error;
         this.correctCounter = correct;
     }
 
-    public void checkWord(char userInput){
+    public void checkWord(String userInput, int btnId){
 
         boolean correctGuess = false;
-        sameLetter = false;
+        buttonId.add(btnId);
+        tries++;
 
-        if(!allLetters.contains(String.valueOf(userInput))){
-            allLetters.add(String.valueOf(userInput));
-            tries++;
-            for(int j = 0; j < secretWord.length(); j++){
-                if(userInput == secretWord.charAt(j)){
-                    dashedLine.set(j*2, String.valueOf(secretWord.charAt(j)));
-                    correctGuess = true;
-                    correctCounter++;
-                }
+        for(int j = 0; j < secretWord.length(); j++){
+            if(userInput.charAt(0) == secretWord.charAt(j)){
+                dashedLine.set(j*2, String.valueOf(secretWord.charAt(j)));
+                correctGuess = true;
+                correctCounter++;
             }
         }
-        else{
-            sameLetter = true;
-        }
-        if(!correctGuess && !sameLetter) {
+        if(!correctGuess) {
+            allLetters.add(userInput);
             errorCounter++;
         }
     }
@@ -75,6 +73,9 @@ public class Logic {
     public ArrayList<String> getAllLetters(){
         return allLetters;
     }
+    public ArrayList<Integer> getButtonId(){
+        return buttonId;
+    }
     public int getTries(){
         return tries;
     }
@@ -84,14 +85,15 @@ public class Logic {
     public int getCorrectCounter(){
         return correctCounter;
     }
-    public int getResId(){
+    public int getResIdImg(){
         return resId[errorCounter];
     }
-    public boolean isSameLetter(){
-        return sameLetter;
-    }
+
     public int getSecretNumb(){
         return secretWord.length();
+    }
+    public String getSecretWord(){
+        return secretWord;
     }
 
 

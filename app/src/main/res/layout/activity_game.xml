@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,20 +7,17 @@
     android:weightSum="1"
     tools:context="com.example.sami.hangman_v10.GameActivity">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="100sp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="167dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_weight="0.87">
 
         <ImageView
             android:id="@+id/hangmanView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="3.12" />
+            android:layout_weight="3.13" />
 
         <TextView
             android:id="@+id/takenLetters"
@@ -38,24 +34,220 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="false"
         android:layout_gravity="center"
-        android:layout_weight="0.19"
         android:textAlignment="center"
         android:textSize="40sp" />
 
-    <Button
-        android:id="@+id/confirmButton"
-        style="@style/Widget.AppCompat.Button"
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100sp"
-        android:layout_marginRight="100sp"
-        android:text="@string/confirm_button" />
+        android:layout_weight="0.36"
+        android:columnCount="6"
+        android:padding="10sp"
+        android:rowCount="5">
 
-    <EditText
-        android:id="@+id/inputUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:digits="abcdefghijklmnopqrstuvwxyzæøå"
-        android:windowSoftInputMode="adjustResize"
-        android:textAppearance="?android:attr/smallScreens"/>
+        <Button
+            android:id="@+id/btnq"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="q"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnw"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="w"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btne"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="e"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnr"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="r"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnt"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="t"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btny"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="y"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnu"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="u"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btni"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="i"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btno"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="o"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnp"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="p"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnå"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="å"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btna"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="a"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btns"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="s"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnd"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="d"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnf"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="f"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btng"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="g"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnh"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="h"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnj"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="j"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnk"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="k"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnl"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="l"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnø"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="ø"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnæ"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="æ"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnz"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="z"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnx"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="x"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnc"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="c"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnv"
+            android:layout_width="61dp"
+            android:layout_height="45sp"
+            android:text="v"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnb"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="b"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnn"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="n"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnm"
+            android:layout_width="60sp"
+            android:layout_height="45sp"
+            android:text="m"
+            android:textSize="20sp" />
+
+    </GridLayout>
+
 </LinearLayout>
