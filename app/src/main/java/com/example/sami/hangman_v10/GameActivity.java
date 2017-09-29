@@ -6,19 +6,21 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.inputmethodservice.Keyboard;
-import android.inputmethodservice.KeyboardView;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Fade;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 
@@ -26,30 +28,27 @@ public class GameActivity extends AppCompatActivity {
 
     private TextView viewCorrect;
     private TextView viewTaken;
-    private EditText input;
-    private Button buttonOk;
     private ImageView imageHangman;
     private String secretWord;
 
-    private char c;
-    private boolean vant;
+    private Button buttonClicked;
 
-    private Toast popupMesssage;
     private AlertDialog.Builder dialogBuilder;
 
     //Accessor for Logic class
     private Logic logic;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        dialogBuilder = new AlertDialog.Builder(this);
         setContentView(R.layout.activity_game);
+        allButtonHandler();
+
+        dialogBuilder = new AlertDialog.Builder(this);
         viewCorrect = (TextView) findViewById(R.id.correctLetters);
         viewTaken = (TextView) findViewById(R.id.takenLetters);
-        input = (EditText) findViewById(R.id.inputUser);
-        buttonOk = (Button) findViewById(R.id.confirmButton);
         imageHangman = (ImageView) findViewById(R.id.hangmanView);
 
         if (savedInstanceState != null){
@@ -61,18 +60,18 @@ public class GameActivity extends AppCompatActivity {
         }
 
         updateInfo();
-        buttonHandler();
+
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putString("secret", secretWord);
+        outState.putString("secret", logic.getSecretWord());
         outState.putStringArrayList("dashedLines", logic.getDashedLines());
         outState.putStringArrayList("takenLetters", logic.getAllLetters());
+        outState.putIntegerArrayList("buttonId", logic.getButtonId());
         outState.putInt("tries", logic.getTries());
         outState.putInt("errors", logic.getErrorsCounter());
         outState.putInt("correct", logic.getCorrectCounter());
-        outState.putString("userInput", input.getText().toString());
 
         super.onSaveInstanceState(outState);
     }
@@ -81,13 +80,58 @@ public class GameActivity extends AppCompatActivity {
         String secret = savedInstanceState.getString("secret");
         ArrayList<String> dash = savedInstanceState.getStringArrayList("dashedLines");
         ArrayList<String> taken = savedInstanceState.getStringArrayList("takenLetters");
+        ArrayList<Integer> buttonId = savedInstanceState.getIntegerArrayList("buttonId");
         int tries = savedInstanceState.getInt("tries");
         int error = savedInstanceState.getInt("errors");
         int correct = savedInstanceState.getInt("correct");
 
-        input.setText(savedInstanceState.getString("userInput"));
+        logic = new Logic(secret, dash, taken, buttonId, tries, error, correct);
 
-        logic = new Logic(secret, dash, taken, tries, error, correct);
+        Iterator<Integer> itr = logic.getButtonId().iterator();
+        while(itr.hasNext()){
+            Button pressedButtons = (Button) findViewById(itr.next());
+            pressedButtons.setEnabled(false);
+        }
+
+    }
+
+    public void allButtonHandler(){
+
+        /*
+        for(int buttonId = 0; buttonId < 29; buttonId++){
+            buttonId = getResources().getIdentifier("btn%c", "id", getActivity().getPackageName());
+            buttonClickedHandler(buttonId);
+        }
+        */
+        buttonClickedHandler(R.id.btna);
+        buttonClickedHandler(R.id.btnb);
+        buttonClickedHandler(R.id.btnc);
+        buttonClickedHandler(R.id.btnd);
+        buttonClickedHandler(R.id.btne);
+        buttonClickedHandler(R.id.btnf);
+        buttonClickedHandler(R.id.btng);
+        buttonClickedHandler(R.id.btnh);
+        buttonClickedHandler(R.id.btni);
+        buttonClickedHandler(R.id.btnj);
+        buttonClickedHandler(R.id.btnk);
+        buttonClickedHandler(R.id.btnl);
+        buttonClickedHandler(R.id.btnm);
+        buttonClickedHandler(R.id.btnn);
+        buttonClickedHandler(R.id.btno);
+        buttonClickedHandler(R.id.btnp);
+        buttonClickedHandler(R.id.btnq);
+        buttonClickedHandler(R.id.btnr);
+        buttonClickedHandler(R.id.btns);
+        buttonClickedHandler(R.id.btnt);
+        buttonClickedHandler(R.id.btnu);
+        buttonClickedHandler(R.id.btnv);
+        buttonClickedHandler(R.id.btnw);
+        buttonClickedHandler(R.id.btnx);
+        buttonClickedHandler(R.id.btny);
+        buttonClickedHandler(R.id.btnz);
+        buttonClickedHandler(R.id.btnæ);
+        buttonClickedHandler(R.id.btnø);
+        buttonClickedHandler(R.id.btnå);
     }
 
     public String generateWord() {
@@ -100,34 +144,24 @@ public class GameActivity extends AppCompatActivity {
         return wordlist.getString(randomIndex);
     }
 
-    public void buttonHandler() {
-
-        buttonOk.setOnClickListener(new View.OnClickListener() {
+    public void buttonClickedHandler(final int buttonId) {
+        buttonClicked  = (Button) findViewById(buttonId);
+        buttonClicked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if(input.getText().length() > 0) {
-                    c = input.getText().charAt(0);
-                    logic.checkWord(c);
-                        if(logic.isSameLetter()){
-                            popupMessage(R.string.letter_exist);
-                        }
-                    updateInfo();
-                    input.setText("");
-                }
-                else{
-                    popupMessage(R.string.enter_letter);
-                }
+                String letter = ((Button)view).getText().toString();
+                view.setEnabled(false);
+                logic.checkWord(letter, buttonId);
 
                 if(logic.getErrorsCounter() > 5){
                     dialogBox(R.string.lost, R.string.yes, R.string.no);
-                    topListHandler(false);
+                    statsHandler(false);
                 }
                 else if(logic.getCorrectCounter() == logic.getSecretNumb()){
                     dialogBox(R.string.won, R.string.yes, R.string.no);
-                    topListHandler(true);
+                    statsHandler(true);
                 }
-
+                updateInfo();
             }
         });
     }
@@ -135,14 +169,9 @@ public class GameActivity extends AppCompatActivity {
     public void updateInfo() {
         viewCorrect.setText(logic.listDashedLines());
         viewTaken.setText(logic.listAllLetters());
-        imageHangman.setImageResource(logic.getResId());
+        imageHangman.setImageResource(logic.getResIdImg());
     }
 
-    public void popupMessage(int resId) {
-        popupMesssage = Toast.makeText(getApplicationContext(), getString(resId), Toast.LENGTH_LONG);
-        popupMesssage.show();
-
-    }
     public void dialogBox(int message, int yes, int no){
         dialogBuilder.setMessage(getString(message));
         dialogBuilder.setCancelable(true);
@@ -173,7 +202,7 @@ public class GameActivity extends AppCompatActivity {
         alertbox.show();
     }
 
-    private void topListHandler(boolean vant){
+    private void statsHandler(boolean vant){
         if(vant){
             SharedPreferences topScoreList = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = topScoreList.edit();
