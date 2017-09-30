@@ -8,12 +8,12 @@
     android:weightSum="1"
     tools:context="com.example.sami.hangman_v10.GameRulesActivity">
 
-    <fragment
-        android:id="@+id/TopFragment"
-        android:name="com.example.sami.hangman_v10.TopFragment"
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/backToMenuButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout="@layout/top_fragment" />
+        android:text="Button"
+        app:srcCompat="@mipmap/backicon"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,13 +34,6 @@
             app:srcCompat="@mipmap/gameplay" />
 
     </LinearLayout>
-
-    <fragment
-        android:id="@+id/TopFragment"
-        android:name="com.example.sami.hangman_v10.TopFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/top_fragment" />
 
     <TextView
         android:id="@+id/instructionsview"

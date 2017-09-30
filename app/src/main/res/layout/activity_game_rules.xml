@@ -5,15 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="1"
     tools:context="com.example.sami.hangman_v10.GameRulesActivity"
-    android:weightSum="1">
+    >
 
-    <fragment
-        android:id="@+id/TopFragment"
-        android:name="com.example.sami.hangman_v10.TopFragment"
+    <ImageButton
+        android:id="@+id/backToMenuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout="@layout/top_fragment" />
+        android:text="Button"
+        app:srcCompat="@mipmap/backicon"/>
 
     <TextView
         android:id="@+id/instructionsview"

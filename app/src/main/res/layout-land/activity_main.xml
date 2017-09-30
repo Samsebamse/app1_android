@@ -9,50 +9,60 @@
     tools:context="com.example.sami.hangman_v10.MainActivity"
     android:weightSum="1">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.88"
-        app:srcCompat="@mipmap/imageman" />
+        android:layout_height="203dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
-    <Button
-        android:id="@+id/buttonStart"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="200sp"
-        android:layout_marginRight="200sp"
-        android:text="@string/start" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="500sp"
+            android:layout_height="201dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40sp"
+            android:layout_weight="0.98"
+            app:srcCompat="@mipmap/imageman" />
 
-    <ImageButton
-        android:id="@+id/buttonLanguage"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="200sp"
-        android:layout_marginRight="200sp"
-        android:text="@string/language" />
+        <ImageButton
+            android:id="@+id/buttonLanguage"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_gravity="right"
+            android:text="@string/language" />
 
-    <Button
-        android:id="@+id/buttonRules"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="200sp"
-        android:layout_marginRight="200sp"
-        android:text="@string/gameplay" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonTopscore"
-        style="@style/Widget.AppCompat.Button"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="200sp"
-        android:layout_marginRight="200sp"
-        android:text="@string/topscore" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="50sp"
+        android:layout_weight="0.98"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonRules"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/gameplay" />
+
+        <Button
+            android:id="@+id/buttonStart"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/start" />
+
+        <Button
+            android:id="@+id/buttonTopscore"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/topscore" />
+    </LinearLayout>
 </LinearLayout>

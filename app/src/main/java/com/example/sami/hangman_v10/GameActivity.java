@@ -32,6 +32,7 @@ public class GameActivity extends AppCompatActivity {
     private String secretWord;
 
     private Button buttonClicked;
+    private boolean winning;
 
     private AlertDialog.Builder dialogBuilder;
 
@@ -45,7 +46,7 @@ public class GameActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_game);
         allButtonHandler();
-
+        winning = false;
         dialogBuilder = new AlertDialog.Builder(this);
         viewCorrect = (TextView) findViewById(R.id.correctLetters);
         viewTaken = (TextView) findViewById(R.id.takenLetters);
@@ -155,11 +156,13 @@ public class GameActivity extends AppCompatActivity {
 
                 if(logic.getErrorsCounter() > 5){
                     dialogBox(R.string.lost, R.string.yes, R.string.no);
-                    statsHandler(false);
+                    winning = false;
+                    statsHandler(winning);
                 }
                 else if(logic.getCorrectCounter() == logic.getSecretNumb()){
                     dialogBox(R.string.won, R.string.yes, R.string.no);
-                    statsHandler(true);
+                    winning = true;
+                    statsHandler(winning);
                 }
                 updateInfo();
             }
@@ -174,7 +177,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void dialogBox(int message, int yes, int no){
         dialogBuilder.setMessage(getString(message));
-        dialogBuilder.setCancelable(true);
+        dialogBuilder.setCancelable(false);
         dialogBuilder.setPositiveButton(
                 getString(yes),
                 new DialogInterface.OnClickListener() {
@@ -193,8 +196,6 @@ public class GameActivity extends AppCompatActivity {
                         Intent mainMenu = new Intent(GameActivity.this, MainActivity.class);
                         finish();
                         startActivity(mainMenu);
-
-
                     }
                 });
 
@@ -217,4 +218,10 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        winning = false;
+        statsHandler(winning);
+    }
 }

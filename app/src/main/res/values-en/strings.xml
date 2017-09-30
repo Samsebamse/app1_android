@@ -16,7 +16,7 @@
     <string name="stats">Statistics</string>
     <string name="show_loss">Loss</string>
     <string name="show_win">Win</string>
-    <string name="resetstats">Reset Statistics</string>
+    <string name="resetstats">Reset Stats</string>
     <string name="instructions">
         1. Guess a letter, if it matches the secret word it will be replaced with the dashed line(s)\n
         or else it will be listet as a fault letter in red on the right top corner.\n

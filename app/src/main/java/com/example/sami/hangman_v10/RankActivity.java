@@ -1,15 +1,16 @@
 package com.example.sami.hangman_v10;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -17,24 +18,37 @@ import com.github.mikephil.charting.data.PieEntry;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RankActivity extends AppCompatActivity implements TopFragment.TopSection{
+public class RankActivity extends AppCompatActivity{
 
     private PieChart pieChart;
 
     SharedPreferences topScoreList;
     SharedPreferences.Editor editor;
+    Button resetButton;
+    ImageButton backToMainMenuButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank);
-
+        resetButtonHandler(R.id.resetStatsButton);
+        mainMenuHandler(R.id.backToMenuButton);
         createPieChart();
-        handleResetButton(R.id.resetStatsButton);
     }
+    public void mainMenuHandler(int buttonId){
+        backToMainMenuButton = (ImageButton) findViewById(buttonId);
+        backToMainMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mainMenu = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mainMenu);
+                finish();
+            }
+        });
 
-    private void handleResetButton(final int buttonId) {
-        final Button resetButton = (Button) findViewById(buttonId);
+    }
+    private void resetButtonHandler(int buttonId) {
+        resetButton = (Button) findViewById(buttonId);
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +59,6 @@ public class RankActivity extends AppCompatActivity implements TopFragment.TopSe
                 pieChart.clear();
             }
         });
-
     }
 
     public void createPieChart(){
