@@ -8,13 +8,12 @@ import android.widget.ImageButton;
 
 public class GameRulesActivity extends AppCompatActivity {
 
-    ImageButton backToMainManuButton;
+    private ImageButton backToMainManuButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_rules);
-
         returnToMainMenu(R.id.backToMenuButton);
 
     }

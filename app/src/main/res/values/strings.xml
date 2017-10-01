@@ -3,7 +3,7 @@
     <string name="app_name">Hangman</string>
     <string name="start">Start spill</string>
     <string name="language">Bytt til engelsk</string>
-    <string name="gameplay">Spilleregler</string>
+    <string name="gameplay">Spillinstruksjonjer</string>
     <string name="topscore">Spillstatistikk</string>
     <string name="confirm_button">Prøv Bokstaven</string>
     <string name="letter_exist">Allerede tastet inn!</string>

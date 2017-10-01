@@ -6,15 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.transition.Fade;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -61,7 +56,6 @@ public class GameActivity extends AppCompatActivity {
         }
 
         updateInfo();
-
     }
 
     @Override
@@ -97,13 +91,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void allButtonHandler(){
-
-        /*
-        for(int buttonId = 0; buttonId < 29; buttonId++){
-            buttonId = getResources().getIdentifier("btn%c", "id", getActivity().getPackageName());
-            buttonClickedHandler(buttonId);
-        }
-        */
         buttonClickedHandler(R.id.btna);
         buttonClickedHandler(R.id.btnb);
         buttonClickedHandler(R.id.btnc);
@@ -157,12 +144,10 @@ public class GameActivity extends AppCompatActivity {
                 if(logic.getErrorsCounter() > 5){
                     dialogBox(R.string.lost, R.string.yes, R.string.no);
                     winning = false;
-                    statsHandler(winning);
                 }
                 else if(logic.getCorrectCounter() == logic.getSecretNumb()){
                     dialogBox(R.string.won, R.string.yes, R.string.no);
                     winning = true;
-                    statsHandler(winning);
                 }
                 updateInfo();
             }
@@ -221,7 +206,12 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        winning = false;
-        statsHandler(winning);
+        if(winning){
+            statsHandler(winning);
+        }
+        else{
+            statsHandler(false);
+        }
+
     }
 }

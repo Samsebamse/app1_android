@@ -31,7 +31,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="330dp"
-            app:srcCompat="@mipmap/gameplay" />
+            app:srcCompat="@drawable/gameplay" />
 
     </LinearLayout>
 
@@ -48,6 +48,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.72"
-        app:srcCompat="@mipmap/gameplay" />
+        app:srcCompat="@drawable/gameplay" />
 
 </LinearLayout>

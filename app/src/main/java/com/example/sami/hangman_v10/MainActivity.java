@@ -89,19 +89,19 @@ public class MainActivity extends AppCompatActivity{
         res.updateConfiguration(conf, dm);
     }
 
-    private void reloadActivity(){
+    public void reloadActivity(){
         Intent refresh = new Intent(this, MainActivity.class);
         startActivity(refresh);
         finish();
     }
 
-    private void saveLanguage(){
+    public void saveLanguage(){
         SharedPreferences.Editor editor = getSharedPreferences("languageSharedPref", MODE_PRIVATE).edit();
         editor.putBoolean("language", language);
         editor.apply();
     }
 
-    private void loadLanguage(){
+    public void loadLanguage(){
         SharedPreferences prefs = getSharedPreferences("languageSharedPref", MODE_PRIVATE);
         language = prefs.getBoolean("language", false);
     }

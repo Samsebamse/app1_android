@@ -23,14 +23,12 @@ public class Logic {
     R.mipmap.hangman4, R.mipmap.hangman5, R.mipmap.hangman6,
     R.mipmap.hangman7};
 
-    private int [] topScore;
-
     public Logic(String secretWord){
         this.secretWord = secretWord;
 
         dashedLine = new ArrayList<>();
         allLetters = new ArrayList<>();
-        buttonId = new ArrayList<Integer>();
+        buttonId = new ArrayList<>();
 
         for (int i = 0; i < secretWord.length(); i++){
             dashedLine.add("_");
@@ -40,9 +38,9 @@ public class Logic {
 
     public Logic(String secret, ArrayList<String> dash, ArrayList<String> taken, ArrayList<Integer> buttonId, int tries, int error, int correct){
         this.secretWord = secret;
-        this.dashedLine = new ArrayList<String>(dash);
-        this.allLetters = new ArrayList<String>(taken);
-        this.buttonId = new ArrayList<Integer>(buttonId);
+        this.dashedLine = new ArrayList<>(dash);
+        this.allLetters = new ArrayList<>(taken);
+        this.buttonId = new ArrayList<>(buttonId);
         this.tries = tries;
         this.errorCounter = error;
         this.correctCounter = correct;
@@ -88,14 +86,12 @@ public class Logic {
     public int getResIdImg(){
         return resId[errorCounter];
     }
-
     public int getSecretNumb(){
         return secretWord.length();
     }
     public String getSecretWord(){
         return secretWord;
     }
-
 
     public StringBuilder listAllLetters(){
         StringBuilder sb = new StringBuilder();

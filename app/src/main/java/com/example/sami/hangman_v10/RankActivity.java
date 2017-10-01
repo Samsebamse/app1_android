@@ -21,11 +21,10 @@ import java.util.List;
 public class RankActivity extends AppCompatActivity{
 
     private PieChart pieChart;
-
-    SharedPreferences topScoreList;
-    SharedPreferences.Editor editor;
-    Button resetButton;
-    ImageButton backToMainMenuButton;
+    private SharedPreferences topScoreList;
+    private SharedPreferences.Editor editor;
+    private Button resetButton;
+    private ImageButton backToMainMenuButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

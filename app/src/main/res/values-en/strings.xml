@@ -3,7 +3,7 @@
     <string name="app_name">Hangman</string>
     <string name="start">Play now</string>
     <string name="language">Change to Norwegian</string>
-    <string name="gameplay">Game rules</string>
+    <string name="gameplay">Game instructions</string>
     <string name="topscore">Game stats</string>
     <string name="confirm_button">Chek letter</string>
     <string name="letter_exist">Already entered!</string>
